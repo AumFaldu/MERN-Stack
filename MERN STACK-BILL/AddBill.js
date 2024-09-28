@@ -4,12 +4,12 @@ import { useNavigate,Link } from 'react-router-dom';
 function Add() {
     const [data, setData] = useState({ BillDate: '', Income: '', Expense: '' });
     const navigate = useNavigate();
-    const ApiUrl = "http://localhost:3001/Bill"; // Correct endpoint for adding a bill
+    const ApiUrl = "http://localhost:3001/Bill";
 
     const handleSubmit = () => {
-        // Basic validation to ensure fields are not empty
+        
         if (!data.BillDate || !data.Income || !data.Expense) {
-            return; // Exit if any field is empty
+            return;
         }
 
         fetch(ApiUrl, {
@@ -19,11 +19,11 @@ function Add() {
         })
         .then(res => {
             if (res.ok) {
-                return res.json(); // Only process response if OK
+                return res.json();
             }
         })
         .then(() => {
-            navigate("/Bill"); // Redirect after successful addition
+            navigate("/Bill"); 
         });
     };
 
@@ -47,7 +47,7 @@ function Add() {
                     <div className='col'>
                         <input 
                             onChange={(e) => setData({ ...data, Income: e.target.value })} 
-                            type='number' // Keep input type for numeric values
+                            type='number' 
                             className='form-control' 
                             value={data.Income}
                         />
@@ -58,7 +58,7 @@ function Add() {
                     <div className='col'>
                         <input 
                             onChange={(e) => setData({ ...data, Expense: e.target.value })} 
-                            type='number' // Keep input type for numeric values
+                            type='number' 
                             className='form-control' 
                             value={data.Expense} 
                         />
